@@ -1,12 +1,12 @@
 console.log('bot_name');
 var fs = require('fs');
 var readline = require('readline');
-var playerId=0;
+var playerId = 0;
 var turn = 0;
 var ogText = "";
 var players;
 var splitposition = 0;
-var playerArray=[];
+var playerArray = [];
 var arrayPos = 0;
 var TEST = "";
 var planets = [];
@@ -15,43 +15,74 @@ var room_height;
 var res = [];
 var playerArray = []
 
-function chunk_jibbers(chunk){
-	var input = chunk;
-	res = input.split(" ");
-	if(turn == 0)
-	{
+function chunk_jibbers(chunk) {
+  var input = chunk;
+  res = input.split(" ");
+  input = cleanTextArray(res);
+  if (turn == 0) {
+    playerId = input[0]
+  } else if (turn == 1) {
 
-	}
-	else if(turn == 1)
-	{
+  } else {
 
-	}
-	else 
-	{
-		
-	}
+  }
 
-	turn++;
+  turn++;
 }
 
-
+// misc functions --------------------------------------------------------
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
 function print(newText) {
-	ogText += (newText + "\n");
+  ogText += (newText + "\n");
   fs.writeFile("./botOutPut.txt", ogText, function(err) {});
 }
 
-rl.on('line', function(chunk){
-	chunk_jibbers(chunk);
+rl.on('line', function(chunk) {
+  chunk_jibbers(chunk);
+
+  console.log();
 });
+
+function cleanTextArray(array) { //removes all blank segments of array
+  var returnArray = []
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] != "") {
+      returnArray[returnArray.length] = array[i];
+    }
+  }
+  return returnArray;
+}
+
+// object blueprints ---------------------------------------------------
+var ship = function(ID, X, Y, HP, DOCKSTATUS, DOCKEDPLANET, DOCKINGPROGRESS) {
+  var newShip = {
+    id: ID,
+    x: X,
+    y: Y,
+    hp: HP,
+    //-
+    //-
+    dockedStatus: DOCKSTATUS,
+    dockedPlanet: DOCKEDPLANET,
+    dockingPorgress: DOCKINGPROGRESS,
+    //-
+
+    action: function() {
+
+    },
+  };
+  return newShip;
+}
 
 /* --------- to do list --------
 
 */
+
+
 
 /* --------- help file --------
 

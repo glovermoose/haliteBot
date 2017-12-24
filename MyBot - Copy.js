@@ -7,77 +7,69 @@ var turn = 0;
 var ogText = "";
 var players;
 var splitposition = 0;
-		var playerArray=[];
-		var arrayPos = 0;
-		
-		
-		var TEST = "";
+var playerArray = [];
+var arrayPos = 0;
+
+
+var TEST = "";
 var planets = [];
 var room_width;
 var room_height;
 res = [];
 var playerArray = []
 
-function chunk_jibbers(chunk){
-	var input = chunk;
+function chunk_jibbers(chunk) {
+  var input = chunk;
 
-	if(turn == 0)
-	{
-		playerid = parseFloat(input);
-	}
-	else if(turn == 1)
-	{
-		var res = input.split(" ");
-		room_width = parseFloat(res[0]);
-		room_height = parseFloat(res[1]);
-		//writeToFile(res[0]+"--"+res[1]);
-	}
-	else 
-	{
-		res = input.split(" ");
-		players = res[getSplitPos()];
-		playerArray=[];
-		var arrayPos = 0;
-		var selected_player = res[getSplitPos()]
-		var selected_players_ships = res[getSplitPos()]
-		for (i = 0; i < parseInt(players); i++) 
-		{ 
-			makePlayer(selected_player);	
-			writeToFile("making player\n player array size "+playerArray.length+"\n");
-		}
-		
-		for (i = 0; i < playerArray.length; i++) //itterate through players
-		{
-			writeToFile("code reaching here \n"+playerArray.length);
-			for (e = 0; e < parseInt(selected_players_ships); e++) //create shits inside player
-			{
-				
-				playerArray[i].findShips(parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]));
-			}
-			
-		}
-		var totalPlanets = parseFloat(res[getSplitPos()]);
-		planets = [];
-		for (i = 0; i < totalPlanets; i++)
-		{
-			makePlanet(parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]),parseFloat(res[getSplitPos()]));
-		}
-		
-		
-		for (i = 0; i < playerArray.length; i++)
-		{
-			playerArray[i].action();
-		}
-	}
-	//writeToFile("turn " + turn + " - " +input + "\n");
-	
-	
-	
-	
-	
-	
-	//sendData();
-	turn++;
+  if (turn == 0) {
+    playerid = parseFloat(input);
+  } else if (turn == 1) {
+    var res = input.split(" ");
+    room_width = parseFloat(res[0]);
+    room_height = parseFloat(res[1]);
+    //writeToFile(res[0]+"--"+res[1]);
+  } else {
+    res = input.split(" ");
+    players = res[getSplitPos()];
+    playerArray = [];
+    var arrayPos = 0;
+    var selected_player = res[getSplitPos()]
+    var selected_players_ships = res[getSplitPos()]
+    for (i = 0; i < parseInt(players); i++) {
+      makePlayer(selected_player);
+      writeToFile("making player\n player array size " + playerArray.length + "\n");
+    }
+
+    for (i = 0; i < playerArray.length; i++) //itterate through players
+    {
+      writeToFile("code reaching here \n" + playerArray.length);
+      for (e = 0; e < parseInt(selected_players_ships); e++) //create shits inside player
+      {
+
+        playerArray[i].findShips(parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]));
+      }
+
+    }
+    var totalPlanets = parseFloat(res[getSplitPos()]);
+    planets = [];
+    for (i = 0; i < totalPlanets; i++) {
+      makePlanet(parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]), parseFloat(res[getSplitPos()]));
+    }
+
+
+    for (i = 0; i < playerArray.length; i++) {
+      playerArray[i].action();
+    }
+  }
+  //writeToFile("turn " + turn + " - " +input + "\n");
+
+
+
+
+
+
+  //sendData();
+  turn++;
 }
 
 
@@ -87,19 +79,19 @@ const rl = readline.createInterface({
 });
 
 
-rl.on('line', function(chunk){
-	chunk_jibbers(chunk);
-	
-	for (i = 0; i < playerArray.length; i++) { 
-	//getting here
-	//writeToFile(""+playerArray[i].shipArrayPos);
-/* 		for (e = 0; e < playerArray[i].ships.length; e++) { 
-		//not getting here
-				playerArray[i].ship[e].action();// place this inside a the bplayer objects function if that players id == playerID
-				
-		} */
-	}
-	console.log(TEST);
+rl.on('line', function(chunk) {
+  chunk_jibbers(chunk);
+
+  for (i = 0; i < playerArray.length; i++) {
+    //getting here
+    //writeToFile(""+playerArray[i].shipArrayPos);
+    /* 		for (e = 0; e < playerArray[i].ships.length; e++) {
+    		//not getting here
+    				playerArray[i].ship[e].action();// place this inside a the bplayer objects function if that players id == playerID
+
+    		} */
+  }
+  console.log(TEST);
 });
 
 
@@ -109,43 +101,40 @@ rl.on('line', function(chunk){
 //player blueprint
 var player = function(ID) {
   var newPlayer = {
-    ships:[],
-	shipArrayPos:0,
+    ships: [],
+    shipArrayPos: 0,
     id: ID,
-	Ship:0,
-    findShips: function(ID,X,Y,HP,garbage,garbagee,DOCKSTATUS,DOCKEDPLANET,garbageee,garbageeee) {/////<<<<<<<<<<<<<---------------------------------------
-		this.Ship = new ship(ID,X,Y,HP,DOCKSTATUS,DOCKEDPLANET);
-		this.ships[this.ships.length] = this.Ship;
-		writeToFile("creating a new ship with id: "+this.ID+"  at location X: "+X+"  y: "+Y+" \n\n");
+    Ship: 0,
+    findShips: function(ID, X, Y, HP, garbage, garbagee, DOCKSTATUS, DOCKEDPLANET, garbageee, garbageeee) { /////<<<<<<<<<<<<<---------------------------------------
+      this.Ship = new ship(ID, X, Y, HP, DOCKSTATUS, DOCKEDPLANET);
+      this.ships[this.ships.length] = this.Ship;
+      writeToFile("creating a new ship with id: " + this.ID + "  at location X: " + X + "  y: " + Y + " \n\n");
     },
-	action: function() 
-	{
-		if(this.id== playerId)
-		{
-			for (e = 0; e < playerArray[i].ships.length; e++) 
-			{ 
-				ships[e].action();// place this inside a the bplayer objects function if that players id == playerID
-				writeToFile("running player action \n"+playerArray.length+"\n");
-			} 
-		}
+    action: function() {
+      if (this.id == playerId) {
+        for (e = 0; e < playerArray[i].ships.length; e++) {
+          ships[e].action(); // place this inside a the bplayer objects function if that players id == playerID
+          writeToFile("running player action \n" + playerArray.length + "\n");
+        }
+      }
     },
   };
   return newPlayer;
 }
 
 //planet blueprint
-var planet = function(ID,X,Y,HEALTH,RADIUS,DOCKINGSPOTS,CURRENTPRODUCTION,OWNED,OWNER,DOCKEDSHIPS) {
+var planet = function(ID, X, Y, HEALTH, RADIUS, DOCKINGSPOTS, CURRENTPRODUCTION, OWNED, OWNER, DOCKEDSHIPS) {
   var newPlanet = {
-	id:ID,
+    id: ID,
     x: X,
     y: Y,
-	health:HEALTH,
-	radius:RADIUS,
-	dockingSpots:DOCKINGSPOTS,
-	CurrentProduction:CURRENTPRODUCTION,
-	owned:OWNED,
-	owner:OWNER,
-	dockedShips:DOCKEDSHIPS,
+    health: HEALTH,
+    radius: RADIUS,
+    dockingSpots: DOCKINGSPOTS,
+    CurrentProduction: CURRENTPRODUCTION,
+    owned: OWNED,
+    owner: OWNER,
+    dockedShips: DOCKEDSHIPS,
     update: function() {
 
     },
@@ -154,70 +143,66 @@ var planet = function(ID,X,Y,HEALTH,RADIUS,DOCKINGSPOTS,CURRENTPRODUCTION,OWNED,
 }
 
 //ship blueprint
-var ship = function(ID,X,Y,HP,DOCKSTATUS,DOCKEDPLANET,DOCKINGPROGRESS) {
+var ship = function(ID, X, Y, HP, DOCKSTATUS, DOCKEDPLANET, DOCKINGPROGRESS) {
   var newShip = {
-	id:ID,
+    id: ID,
     x: X,
     y: Y,
-	hp: HP,
-	//-
-	//-
-	dockedStatus:DOCKSTATUS,
-	dockedPlanet:DOCKEDPLANET,
-	dockingPorgress:DOCKINGPROGRESS,
-	//-
-	
+    hp: HP,
+    //-
+    //-
+    dockedStatus: DOCKSTATUS,
+    dockedPlanet: DOCKEDPLANET,
+    dockingPorgress: DOCKINGPROGRESS,
+    //-
+
     action: function() {
-		//if(parent.id == playerid)
-		//{
-			writeToFile("running ship action for player"+playerID+" \n"+playerArray.length);
-		TEST += "t "+i+" 7 90 ";
-		////////////////////////////////////////////////////////////////////////////program not reaching
-			
-			//console.log("t "+this.id+" 2 "+Math.random(360));
-		//}
+      //if(parent.id == playerid)
+      //{
+      writeToFile("running ship action for player" + playerID + " \n" + playerArray.length);
+      TEST += "t " + i + " 7 90 ";
+      ////////////////////////////////////////////////////////////////////////////program not reaching
+
+      //console.log("t "+this.id+" 2 "+Math.random(360));
+      //}
     },
   };
   return newShip;
 }
 //creation functions -------------------------------------------
 
-function makePlanet(ID,X,Y,HEALTH,RADIUS,DOCKINGSPOTS,CURRENTPRODUCTION,garbage,OWNED,OWNER,DOCKEDSHIPS)
-{
-	Planet = new planet(ID,X,Y,HEALTH,RADIUS,DOCKINGSPOTS,CURRENTPRODUCTION,OWNED,OWNER,DOCKEDSHIPS);
-	planets[planets.length] = Planet;
+function makePlanet(ID, X, Y, HEALTH, RADIUS, DOCKINGSPOTS, CURRENTPRODUCTION, garbage, OWNED, OWNER, DOCKEDSHIPS) {
+  Planet = new planet(ID, X, Y, HEALTH, RADIUS, DOCKINGSPOTS, CURRENTPRODUCTION, OWNED, OWNER, DOCKEDSHIPS);
+  planets[planets.length] = Planet;
 }
 
-function makePlayer(ID)
-{
-	var Player = new player(ID);
+function makePlayer(ID) {
+  var Player = new player(ID);
 
-	playerArray[playerArray.length] = Player;
-		writeToFile("code creating new player here\n"+playerArray.length+"\n\n");
-	arrayPos++;
+  playerArray[playerArray.length] = Player;
+  writeToFile("code creating new player here\n" + playerArray.length + "\n\n");
+  arrayPos++;
 }
 
 //functions ---------------------------------------------------
 function writeToFile(newText) {
-	ogText += newText;
+  ogText += newText;
   fs.writeFile("./botOutPut.txt", ogText, function(err) {});
 }
 
-function getSplitPos()
-{
-	splitposition+=1;
-	/*writeToFile(""+res[splitposition] + " pos " +splitposition + " / " + res.length-1 +"\n");
-	if(res[splitposition] == "")
-	{
-		writeToFile('reqesting blank string');
-	}
-	*/
-	return splitposition;
+function getSplitPos() {
+  splitposition += 1;
+  /*writeToFile(""+res[splitposition] + " pos " +splitposition + " / " + res.length-1 +"\n");
+  if(res[splitposition] == "")
+  {
+  	writeToFile('reqesting blank string');
+  }
+  */
+  return splitposition;
 }
 
-function resetSplitPos()
-{
-	splitposition=0;
+function resetSplitPos() {
+  splitposition = 0;
 }
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
