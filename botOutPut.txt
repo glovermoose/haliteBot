@@ -1,0 +1,24 @@
+code creating new player here
+1
+
+making player
+ player array size 1
+code creating new player here
+2
+
+making player
+ player array size 2
+code reaching here 
+2creating a new ship with id: undefined  at location X: 60  y: 80 
+
+creating a new ship with id: undefined  at location X: 60  y: 77 
+
+creating a new ship with id: undefined  at location X: 60  y: 83 
+
+code reaching here 
+2creating a new ship with id: undefined  at location X: 3  y: 3 
+
+creating a new ship with id: undefined  at location X: 0  y: 4 
+
+creating a new ship with id: undefined  at location X: 0  y: 5 
+
